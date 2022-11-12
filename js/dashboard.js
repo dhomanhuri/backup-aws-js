@@ -1,6 +1,6 @@
 // const url = "http://127.0.0.1:5000"
-const url = "http://imageprocessing.promaydo.net:8080";
-const baseUrlImg = "http://localhost/backend-python-ersa/src/";
+const url = "http://imageprocessing.promaydo.net:5000";
+const baseUrlImg = "http://localhost/backend-python-ersa/";
 $(document).ready(function () {
   setInterval(function () {
     let temp = "";
