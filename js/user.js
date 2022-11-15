@@ -4,7 +4,7 @@ const emailValue = document.getElementById("updateemail");
 const passwordValue = document.getElementById("updatepassword");
 let updateid = "";
 let output = "";
-const url = "http://imageprocessing.promaydo.net:5080";
+const url = "http://imageprocessing.promaydo.net:5000";
 // const url = "http://127.0.0.1:5000";
 let token = localStorage.getItem("access_token");
 const viewTable = (posts) => {
