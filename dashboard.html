@@ -162,6 +162,29 @@
               </div>
             </div>
           </div>
+        </div><br \>
+        <div class="row" >
+          <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-capitalize font-weight-bold">Time</p>
+                      <h5 class="font-weight-bolder mb-0 time">
+                        12 d
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md btn-clicked">
+                      <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="card mb-4 mt-3">
           <div class="card-header pb-0">
@@ -297,6 +320,21 @@
       const url = "http://imageprocessing.promaydo.net:5000";
       const baseUrlImg = "http://imageprocessing.promaydo.net/backend-python-ersa/";
       $(document).ready(function() {
+        $( ".btn-clicked" ).click(function() {
+          fetch(url+"/countdown", {
+            method: 'PUT',
+            // body: formdata,
+            redirect: 'follow'
+          })
+          .then(response => response.text())
+          .then(result => {
+            var myObj = JSON.parse(result);
+            var data = myObj.data.countdown;
+            console.log(data);
+          })
+          .catch(error => console.log('error', error));
+          
+        });
           setInterval(function(){
             let temp="";
             let hum="";
@@ -334,13 +372,19 @@
             .then(response => response.text())
             .then(result => {
               var myObj = JSON.parse(result);
-              // console.log(myObj.data)
               var data = myObj.data.data;
               console.log(data);
               document.querySelector('#img-test').src = baseUrlImg + data
-              // data.forEach(element => {
-              //   console.log(element);
-              // });
+            })
+            .catch(error => console.log('error', error));
+            
+            fetch(url+"/countdown", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+              var myObj = JSON.parse(result);
+              var data = myObj.data.countdown;
+              console.log(myObj);
+              $("h5.time").html(data);
             })
             .catch(error => console.log('error', error));
             
