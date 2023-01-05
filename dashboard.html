@@ -172,7 +172,7 @@
                     <div class="numbers">
                       <p class="text-sm mb-0 text-capitalize font-weight-bold">Time</p>
                       <h5 class="font-weight-bolder mb-0 time">
-                        12 d
+                        -
                       </h5>
                     </div>
                   </div>
@@ -383,8 +383,15 @@
             .then(result => {
               var myObj = JSON.parse(result);
               var data = myObj.data.countdown;
-              console.log(myObj);
-              $("h5.time").html(data);
+              let date_1 = new Date(data);
+              let date_2 = new Date();
+
+              const days = (date_1, date_2) =>{
+                  let difference = date_1.getTime() - date_2.getTime();
+                  let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+                  return TotalDays;
+              }
+              $("h5.time").html(days(date_1, date_2)+" day");
             })
             .catch(error => console.log('error', error));
             
