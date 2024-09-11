@@ -4,18 +4,18 @@ const emailValue = document.getElementById("updateemail");
 const passwordValue = document.getElementById("updatepassword");
 let updateid = "";
 let output = "";
-const url = "http://149.129.192.245:8080";
+const url = "http://149.129.192.245:5000";
 // const url = "http://127.0.0.1:5000";
 let token = localStorage.getItem("access_token");
 const viewTable = (posts) => {
-  // val = posts["data"];
-  console.log(posts);
-  posts.forEach((posts) => {
-    // console.log(posts.name);
-    if (posts.level == 1) {
-      var level = "admin";
-    }
-    output += `
+    // val = posts["data"];
+    console.log(posts);
+    posts.forEach((posts) => {
+        // console.log(posts.name);
+        if (posts.level == 1) {
+            var level = "admin";
+        }
+        output += `
     <tr>                        
       <td>
         <div class="d-flex px-2 py-1">
@@ -45,69 +45,69 @@ const viewTable = (posts) => {
       </td>
     </tr>
         `;
-  });
-  postsList.innerHTML = output;
+    });
+    postsList.innerHTML = output;
 };
 
 function update(a, b, c, d) {
-  document.getElementById("updatenama").value = b;
-  document.getElementById("updateemail").value = c;
-  document.getElementById("updatepassword").value = d;
-  updateid = a;
+    document.getElementById("updatenama").value = b;
+    document.getElementById("updateemail").value = c;
+    document.getElementById("updatepassword").value = d;
+    updateid = a;
 }
 function submitupdate() {
-  var myHeaders = new Headers();
-  myHeaders.append("Authorization", "Bearer " + token);
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer " + token);
 
-  var formdata = new FormData();
-  formdata.append("name", nameValue.value);
-  formdata.append("email", emailValue.value);
-  formdata.append("password", passwordValue.password);
+    var formdata = new FormData();
+    formdata.append("name", nameValue.value);
+    formdata.append("email", emailValue.value);
+    formdata.append("password", passwordValue.password);
 
-  var requestOptions = {
-    method: "PUT",
-    headers: myHeaders,
-    body: formdata,
-    redirect: "follow",
-  };
+    var requestOptions = {
+        method: "PUT",
+        headers: myHeaders,
+        body: formdata,
+        redirect: "follow",
+    };
 
-  fetch(url + "/user/" + updateid, requestOptions)
-    .then((response) => response.text())
-    .then((result) => console.log(result))
-    .catch((error) => console.log("error", error));
-  window.location.href = "tables.html";
+    fetch(url + "/user/" + updateid, requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log("error", error));
+    window.location.href = "tables.html";
 }
 function funcdel(s) {
-  var myHeaders = new Headers();
-  myHeaders.append("Authorization", "Bearer " + token);
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer " + token);
 
-  var requestOptions = {
-    method: "DELETE",
-    headers: myHeaders,
-    redirect: "follow",
-  };
+    var requestOptions = {
+        method: "DELETE",
+        headers: myHeaders,
+        redirect: "follow",
+    };
 
-  fetch(url + "/user/" + s, requestOptions)
-    .then((response) => response.text())
-    .then((result) => console.log(result))
-    .catch((error) => console.log("error", error));
+    fetch(url + "/user/" + s, requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log("error", error));
 
-  window.location.href = "tables.html";
+    window.location.href = "tables.html";
 }
 
 var headglob = new Headers();
 headglob.append("Authorization", "Bearer " + token);
 var requestOptions = {
-  method: "GET",
-  headers: headglob,
-  //   body: formdata,
-  redirect: "follow",
+    method: "GET",
+    headers: headglob,
+    //   body: formdata,
+    redirect: "follow",
 };
 fetch(url + "/user", requestOptions)
-  .then((response) => response.text())
-  .then((result) => {
-    myObj = JSON.parse(result);
-    // console.log(myObj.data);
-    viewTable(myObj.data);
-  })
-  .catch((error) => console.log("error", error));
+    .then((response) => response.text())
+    .then((result) => {
+        myObj = JSON.parse(result);
+        // console.log(myObj.data);
+        viewTable(myObj.data);
+    })
+    .catch((error) => console.log("error", error));
