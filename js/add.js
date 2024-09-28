@@ -1,4 +1,4 @@
-const url = "http://149.129.192.245:5000";
+const url = "http://8.215.71.56:5000";
 // const url = "http://127.0.0.1:5000";
 const nameValue = document.getElementById("addnama");
 const emailValue = document.getElementById("addemail");
